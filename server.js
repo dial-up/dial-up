@@ -6,8 +6,8 @@ var bodyParser = require('body-parser');
 var async = require('async');
 
 var helpers = require('./server/helper.js');
-var yelp = require('./server/yelp.js')
-var wiki = require('./server/yelp.js')
+var yelp = require('./server/externalAPIs/yelp.js')
+var wiki = require('./server/externalAPIs/wikipedia.js')
 
 // SET UP
 app.use(express.static(__dirname + '/public'));
