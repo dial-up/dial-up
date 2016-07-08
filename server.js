@@ -2,9 +2,12 @@ var express = require('express');
 var fs = require('fs');
 var app = express();
 var path = __dirname + '/public/';
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+var async = require('async');
 
 var helpers = require('./server/helper.js');
+var yelp = require('./server/yelp.js')
+var wiki = require('./server/yelp.js')
 
 // SET UP
 app.use(express.static(__dirname + '/public'));
@@ -33,7 +36,6 @@ app.get('/', function(req, res) {
 //   res.send({categories: ['gifts', 'activities', 'trips', 'food']})
 // });
 
-
 // getIdea - responds to user clicking "GO button" from UI
 app.post('/api/getIdea', function(req, res, next) {
   helpers.getIdeaList(function(data) {
@@ -43,8 +45,35 @@ app.post('/api/getIdea', function(req, res, next) {
   })
 });
 
-// app.post('/api/getIdea', function(req, res, next) {
-//   res.send(helpers.generateRandomIdea(req.ideaList, req.body.category));
+
+app.get('/api/suggestionDetails', function(req, res, next) {
+
+  async.parallel({
+
+    yelp: function(callback) {
+      callback(null, yelp.yelpSearch(req.body.suggestion, req.body.location, function(data) {
+        res.send(data);
+      }));
+    },
+
+    wiki: function(callback) {
+      callback(null, wiki.wikiSearch(req.body.suggestion, function(data) {
+        res.send(data);
+      }));
+    }
+  }, function(err, results) {
+    res.send(JSON.stringify(results));
+  })
+
+})
+
+
+
+
+// app.get('/api/yelp', function(req, res, next) {
+// });
+
+// app.get('/api/wikipedia', function(req, res, next) {
 // });
 
 
