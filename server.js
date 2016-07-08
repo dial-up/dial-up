@@ -5,6 +5,7 @@ var path = __dirname + '/public/';
 var bodyParser = require('body-parser')
 
 var helpers = require('./server/helper.js');
+var wiki = require('./server/wikiSummary.js');
 
 // SET UP
 app.use(express.static(__dirname + '/public'));
