@@ -14,9 +14,7 @@ app.get('/', function(req, res) {
 });
 
 // do other stuff
-
-app.use(express.static(__dirname + '/public'));
-
-app.listen(3000, function() {
-  console.log('App listening on port 3000!');
+app.use(express.static(__dirname + '/public'))
+app.listen(1337, function() {
+  console.log('App listening on port 1337!');
 });
