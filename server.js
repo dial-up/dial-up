@@ -3,6 +3,8 @@ var fs = require('fs');
 var app = express();
 var path = __dirname + '/public/';
 
+var app = express();
+var port = process.env.PORT || 1337;
 
 app.use(function(req,res,next) {
   console.log('/' + req.method + ' from ' + req.url);
@@ -15,6 +17,6 @@ app.get('/', function(req, res) {
 
 // do other stuff
 app.use(express.static(__dirname + '/public'))
-app.listen(1337, function() {
+app.listen(port, function() {
   console.log('App listening on port 1337!');
 });
