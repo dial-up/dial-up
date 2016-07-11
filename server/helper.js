@@ -4,12 +4,13 @@ var fs = require('fs');
 
 var getIdeaList = function(callback) {
 
-  fs.readFile(__dirname + '/data.json', 'UTF-8', function(err, data) {
-    if (err) {
-      console.log('Get Idea Threw Error: ', err);
-    }
-    callback(JSON.parse(data));
-  })
+  // fs.readFile(__dirname + '/data.json', 'UTF-8', function(err, data) {
+  //   if (err) {
+  //     console.log('Get Idea Threw Error: ', err);
+  //   }
+  //   callback(JSON.parse(data));
+  // })
+  return callback(ideas);
 };
 
 var generateRandomIdea = function (object, category, callback) {
@@ -26,6 +27,32 @@ var generateRandomIdea = function (object, category, callback) {
     callback(object[category][random]);
   }
 };
+
+var ideas = {
+  "gifts": [
+    "Flowers",
+    "Make Dinner",
+    "Massage"
+  ],
+  "activities": [
+    "Picnic",
+    "Museum",
+    "Mini Golf",
+    "Local Music"
+  ],
+  "trips": [
+    "Camping Trip",
+    "Wine Tasting",
+    "Scenic Drive"
+  ],
+  "food": [
+    "Brunch",
+    "Dinner",
+    "Drinks"
+  ]
+}
+
+
 
 module.exports = {
   getIdeaList: getIdeaList,
