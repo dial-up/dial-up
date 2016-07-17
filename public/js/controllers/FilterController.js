@@ -20,12 +20,10 @@ angular.module('App.filterCtrl', [])
   $scope.showSidebar = function() {
     if (toggle) {
       toggle = false;
-      $('.menu').text('☰ Close');
       $('.list').slideDown(200);
 
     } else {
       toggle = true;
-      $('.menu').text('☰ Menu');
       $('.list').slideUp(200);
     }
   };
